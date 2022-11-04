@@ -3,6 +3,7 @@ pipeline {
     environment{
         FUNCTION_NAME="s3toDynamonCSVImport"
         BUCKETS3="javier-csv-loader-bucket"
+        ZIP="function.zip"
         CODE="lambda_function.py"
         BRANCH_NAME="master"
     }
