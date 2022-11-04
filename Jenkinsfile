@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment{
-        FUNCTION_NAME="educacionit_s3toDynamonCSVImport"
+        FUNCTION_NAME="s3toDynamonCSVImport"
         BUCKETS3="javier-csv-loader-bucket"
         CODE="lambda_function.py"
         BRANCH_NAME="master"
