@@ -34,7 +34,7 @@ pipeline {
         } 
         stage('Deploy to Lambda') {
             steps {
-                sh 'aws lambda update-function-code --function-name $FUNCTION_NAME --s3-bucket ${BUCKETS3} --s3-key $CSV --publish'
+                sh 'aws lambda update-function-code --function-name $FUNCTION_NAME --s3-bucket ${BUCKETS3} --publish'
             }
         }   
     }
