@@ -3,7 +3,7 @@ pipeline {
     environment{
         FUNCTION_NAME="s3toDynamonCSVImport"
         BUCKETS3="javier-csv-loader-bucket"
-        ZIP="data.zip"
+        CSV="data.csv"
         CODE="lambda_function.py"
         BRANCH_NAME="master"
     }
@@ -20,16 +20,16 @@ pipeline {
                 sh 'aws s3 ls'
             }
         } 
-        stage('BUILD TO ZIP') {
+        stage('Git Clone') {
             steps {
-                echo "Building ${BRANCH_NAME}"
-                sh 'zip -jr $ZIP $CODE'
-                sh 'ls -lrt'
+                sh 'rm -rf s3toDynamonCSVImport/'
+                sh 'git clone https://github.com/javiergiuga/s3toDynamonCSVImport.git'
+                sh 'ls -lrt s3toDynamonCSVImport/'
             }
-        } 
+        }  
         stage('Upload to S3') {
             steps {
-                sh 'aws s3 cp $ZIP s3://${BUCKETS3}'
+                sh 'aws s3 cp $CSV s3://${BUCKETS3}'
             }
         } 
         stage('Deploy to Lambda') {
